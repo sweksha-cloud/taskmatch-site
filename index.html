@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TaskMatch</title>
+  <meta name="description" content="Your desktop notices what you're working on and finds someone doing it too.">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #0064e0;
+      --blue-deep: #0050b8;
+      --blue-wash: #e7f1ff;
+      --gradient: linear-gradient(135deg, #0081fb 0%, #0064e0 100%);
+      --bg: #ffffff;
+      --card: #ffffff;
+      --subtle: #f7f7f7;
+      --text: #4b4b4b;
+      --heading: #1c1c1e;
+      --muted: #777777;
+      --line: #e5e5e5;
+      --code-bg: #f1f3f5;
+      --radius: 16px;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --blue: #3d9bff;
+        --blue-deep: #0a5bc4;
+        --blue-wash: #13304f;
+        --bg: #131f24;
+        --card: #1a2a31;
+        --subtle: #1a2a31;
+        --text: #d7e2e8;
+        --heading: #f1f7fb;
+        --muted: #a3b3bb;
+        --line: #37464f;
+        --code-bg: #0e171b;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 500 17px/1.6 "Inter", system-ui, -apple-system, sans-serif;
+    }
+    a { color: var(--blue); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; color: var(--heading); text-decoration: none; }
+    .brand img { width: 36px; height: 36px; }
+    nav .links a { margin-left: 20px; color: var(--muted); text-decoration: none; font-weight: 700; font-size: 15px; }
+    nav .links a:hover { color: var(--blue); }
+
+    .hero { text-align: center; padding: 56px 0 40px; }
+    .hero img.logo { width: 112px; height: 112px; }
+    h1 { font-weight: 800; font-size: clamp(36px, 7vw, 60px); line-height: 1.05; color: var(--heading); margin: 18px 0 14px; letter-spacing: -0.02em; }
+    h1 span { background: var(--gradient); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .tagline { font-size: clamp(18px, 2.6vw, 22px); color: var(--muted); max-width: 620px; margin: 0 auto 32px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 28px; border-radius: 12px; font-weight: 800; font-size: 17px;
+      text-decoration: none; border: 2px solid transparent;
+      transition: transform .08s ease, filter .15s ease;
+    }
+    .btn:active { transform: translateY(2px); }
+    .btn-primary { background: var(--gradient); color: #fff; box-shadow: 0 4px 0 var(--blue-deep); }
+    .btn-primary:hover { filter: brightness(1.06); }
+    .btn-ghost { color: var(--blue); border-color: var(--line); background: var(--card); box-shadow: 0 4px 0 var(--line); }
+    .ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .fine { margin-top: 14px; font-size: 14px; color: var(--muted); }
+
+    .popup {
+      max-width: 440px; margin: 48px auto 0; text-align: left;
+      background: var(--card); border: 2px solid var(--line); border-radius: 20px;
+      padding: 20px 22px; box-shadow: 0 18px 40px rgba(0, 60, 140, .12);
+    }
+    .popup .who { display: flex; align-items: center; gap: 12px; }
+    .avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--gradient); color: #fff; display: grid; place-items: center; font-weight: 800; }
+    .popup b { color: var(--heading); }
+    .popup p { margin: 12px 0 16px; }
+    .popup .row { display: flex; gap: 10px; }
+    .popup .row span { flex: 1; text-align: center; padding: 10px; border-radius: 12px; font-weight: 800; font-size: 15px; }
+    .accept { background: var(--gradient); color: #fff; }
+    .decline { border: 2px solid var(--line); color: var(--muted); }
+
+    section { padding: 56px 0; }
+    h2 { font-weight: 800; font-size: clamp(26px, 4vw, 36px); color: var(--heading); margin: 0 0 10px; letter-spacing: -0.01em; }
+    .lead { color: var(--muted); margin: 0 0 32px; max-width: 640px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .card { background: var(--card); border: 2px solid var(--line); border-radius: var(--radius); padding: 22px; }
+    .card .num { width: 34px; height: 34px; border-radius: 10px; background: var(--blue-wash); color: var(--blue); display: grid; place-items: center; font-weight: 800; margin-bottom: 12px; }
+    .card h3 { margin: 0 0 6px; font-size: 19px; color: var(--heading); font-weight: 800; }
+    .card p { margin: 0; color: var(--muted); font-size: 16px; }
+
+    video { width: 100%; border-radius: var(--radius); border: 2px solid var(--line); background: #000; display: block; }
+
+    .diagram { background: #fff; border: 2px solid var(--line); border-radius: var(--radius); padding: 16px; }
+    .diagram img { width: 100%; height: auto; display: block; }
+
+    .steps { counter-reset: s; list-style: none; padding: 0; margin: 0; }
+    .steps li { counter-increment: s; position: relative; padding: 0 0 22px 52px; }
+    .steps li::before {
+      content: counter(s); position: absolute; left: 0; top: -2px;
+      width: 34px; height: 34px; border-radius: 10px; background: var(--blue-wash); color: var(--blue);
+      display: grid; place-items: center; font-weight: 800;
+    }
+    .steps b { color: var(--heading); }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; }
+    code { background: var(--code-bg); padding: 2px 6px; border-radius: 6px; }
+    pre { background: var(--code-bg); padding: 14px 16px; border-radius: 12px; overflow-x: auto; margin: 10px 0 0; }
+    pre code { background: none; padding: 0; }
+    details { margin-top: 24px; background: var(--subtle); border: 2px solid var(--line); border-radius: var(--radius); padding: 16px 20px; }
+    summary { cursor: pointer; font-weight: 800; color: var(--heading); }
+    details ol { padding-left: 20px; }
+    details li { margin: 10px 0; }
+
+    footer { border-top: 2px solid var(--line); padding: 28px 0 48px; color: var(--muted); font-size: 15px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--muted); font-weight: 700; }
+
+    @media (max-width: 560px) {
+      nav .links a:not(:last-child) { display: none; }
+      .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="#"><img src="icon.png" alt="">TaskMatch</a>
+      <div class="links">
+        <a href="#how">How it works</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#install">Install</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <img class="logo" src="icon.png" alt="TaskMatch logo">
+      <h1>Never grind <span>alone</span>.</h1>
+      <p class="tagline">Your desktop notices what you're working on and finds someone doing it too.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/TaskMatch-mac-arm64.dmg">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 1.43c0 1.14-.42 2.2-1.12 2.98-.84.93-2.2 1.65-3.3 1.56-.14-1.1.41-2.26 1.1-3 .78-.84 2.12-1.48 3.32-1.54zM20.5 17.3c-.55 1.27-.82 1.84-1.53 2.96-1 1.56-2.4 3.5-4.14 3.52-1.55.01-1.95-1-4.05-1-2.1.01-2.54 1.02-4.09 1-1.74-.01-3.07-1.77-4.07-3.33C-.17 16.14-.47 11 1.3 8.3 2.56 6.37 4.55 5.24 6.43 5.24c1.91 0 3.11 1.05 4.69 1.05 1.53 0 2.47-1.05 4.68-1.05 1.67 0 3.44.91 4.7 2.48-4.13 2.26-3.46 8.16 0 9.58z"/></svg>
+          Download for Mac
+        </a>
+        <a class="btn btn-ghost" href="#demo">Watch the demo</a>
+      </div>
+      <p class="fine">Apple Silicon (M1 or newer) · Free · <a href="#install">Install steps</a></p>
+
+      <div class="popup" aria-label="Example match popup">
+        <div class="who"><div class="avatar">P</div><div><b>Match found</b><br><small>LeetCode · right now</small></div></div>
+        <p><b>Priya</b> is also doing LeetCode right now. Want to work alongside her?</p>
+        <div class="row"><span class="decline">Not now</span><span class="accept">Let's work</span></div>
+      </div>
+    </header>
+
+    <section id="how">
+      <h2>How it works</h2>
+      <p class="lead">You do nothing extra. No posting, no searching, no scheduling.</p>
+      <div class="grid">
+        <div class="card"><div class="num">1</div><h3>It notices</h3><p>TaskMatch sits in your menu bar and picks up what you're on: a LeetCode problem, job applications, a CS course.</p></div>
+        <div class="card"><div class="num">2</div><h3>It finds someone</h3><p>Every few minutes it looks for someone working on the same thing at the same moment.</p></div>
+        <div class="card"><div class="num">3</div><h3>You meet</h3><p>One low-pressure popup. If you both accept, a video call opens for the two of you.</p></div>
+        <div class="card"><div class="num">4</div><h3>You stay connected</h3><p>Add each other, and TaskMatch tells you when they're working on that topic again.</p></div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <h2>See it in action</h2>
+      <p class="lead">A one-minute walkthrough of a real match.</p>
+      <video src="demo.mp4" controls playsinline preload="metadata" poster="icon.png"></video>
+    </section>
+
+    <section id="privacy">
+      <h2>Your activity stays on your laptop</h2>
+      <p class="lead">Private pages and apps are filtered out first. Llama 3.2 runs on your Mac and turns the rest into one short sentence and a topic. That's all the server ever sees: no URLs, no page text, no titles.</p>
+      <div class="diagram"><img src="privacy-diagram.svg" alt="Diagram: what stays on your laptop and what the server stores"></div>
+    </section>
+
+    <section id="install">
+      <h2>Install</h2>
+      <p class="lead">About a minute. You don't need an account.</p>
+      <ol class="steps">
+        <li><b>Download</b> <a href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/TaskMatch-mac-arm64.dmg">TaskMatch for Mac</a>, open the <code>.dmg</code> and drag the app into Applications.</li>
+        <li><b>Let macOS open it.</b> TaskMatch isn't from the App Store yet, so macOS may say it's damaged or can't be opened. Run this once in Terminal, then open it again:
+          <pre><code>xattr -cr /Applications/work-match.app</code></pre>
+        </li>
+        <li><b>Click the globe</b> in your menu bar, then <b>Skip, try it as a guest</b>.</li>
+        <li><b>Try a match:</b> pick a demo task to see the match popup and call flow without any setup.</li>
+      </ol>
+
+      <details>
+        <summary>Optional: match on your real activity</summary>
+        <ol>
+          <li>Download the local AI model, <a href="https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf">Llama 3.2 3B</a> (2.0 GB), or the lighter <a href="https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf">1B version</a> (0.8 GB), into:
+            <pre><code>~/Library/Application Support/com.sultanalzoghaibi.workmatch/models/</code></pre>
+          </li>
+          <li>Download the <a href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/TaskMatch-chrome-extension.zip">Chrome extension</a> and unzip it. In Chrome, open <code>chrome://extensions</code>, turn on <b>Developer mode</b>, click <b>Load unpacked</b> and pick the unzipped folder.</li>
+          <li>Restart TaskMatch and turn on <b>friend finding</b>.</li>
+        </ol>
+      </details>
+    </section>
+
+    <footer>
+      <span>TaskMatch · built at a hackathon</span>
+      <a href="https://github.com/SultanAlzoghaibi/work-match">Source code on GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TaskMatch</title>
+  <title>work-match</title>
   <meta name="description" content="Your desktop notices what you're working on and finds someone doing it too.">
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -133,7 +133,7 @@
 <body>
   <div class="wrap">
     <nav>
-      <a class="brand" href="#"><img src="icon.png" alt="">TaskMatch</a>
+      <a class="brand" href="#"><img src="icon.png" alt="">work-match</a>
       <div class="links">
         <a href="#how">How it works</a>
         <a href="#privacy">Privacy</a>
@@ -142,11 +142,11 @@
     </nav>
 
     <header class="hero">
-      <img class="logo" src="icon.png" alt="TaskMatch logo">
+      <img class="logo" src="icon.png" alt="work-match logo">
       <h1>Never grind <span>alone</span>.</h1>
       <p class="tagline">Your desktop notices what you're working on and finds someone doing it too.</p>
       <div class="ctas">
-        <a class="btn btn-primary" href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/TaskMatch-mac-arm64.dmg">
+        <a class="btn btn-primary" href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/work-match-mac-arm64.dmg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.37 1.43c0 1.14-.42 2.2-1.12 2.98-.84.93-2.2 1.65-3.3 1.56-.14-1.1.41-2.26 1.1-3 .78-.84 2.12-1.48 3.32-1.54zM20.5 17.3c-.55 1.27-.82 1.84-1.53 2.96-1 1.56-2.4 3.5-4.14 3.52-1.55.01-1.95-1-4.05-1-2.1.01-2.54 1.02-4.09 1-1.74-.01-3.07-1.77-4.07-3.33C-.17 16.14-.47 11 1.3 8.3 2.56 6.37 4.55 5.24 6.43 5.24c1.91 0 3.11 1.05 4.69 1.05 1.53 0 2.47-1.05 4.68-1.05 1.67 0 3.44.91 4.7 2.48-4.13 2.26-3.46 8.16 0 9.58z"/></svg>
           Download for Mac
         </a>
@@ -165,10 +165,10 @@
       <h2>How it works</h2>
       <p class="lead">You do nothing extra. No posting, no searching, no scheduling.</p>
       <div class="grid">
-        <div class="card"><div class="num">1</div><h3>It notices</h3><p>TaskMatch sits in your menu bar and picks up what you're on: a LeetCode problem, job applications, a CS course.</p></div>
+        <div class="card"><div class="num">1</div><h3>It notices</h3><p>work-match sits in your menu bar and picks up what you're on: a LeetCode problem, job applications, a CS course.</p></div>
         <div class="card"><div class="num">2</div><h3>It finds someone</h3><p>Every few minutes it looks for someone working on the same thing at the same moment.</p></div>
         <div class="card"><div class="num">3</div><h3>You meet</h3><p>One low-pressure popup. If you both accept, a video call opens for the two of you.</p></div>
-        <div class="card"><div class="num">4</div><h3>You stay connected</h3><p>Add each other, and TaskMatch tells you when they're working on that topic again.</p></div>
+        <div class="card"><div class="num">4</div><h3>You stay connected</h3><p>Add each other, and work-match tells you when they're working on that topic again.</p></div>
       </div>
     </section>
 
@@ -182,8 +182,8 @@
       <h2>Install</h2>
       <p class="lead">About a minute. You don't need an account.</p>
       <ol class="steps">
-        <li><b>Download</b> <a href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/TaskMatch-mac-arm64.dmg">TaskMatch for Mac</a>, open the <code>.dmg</code> and drag the app into Applications.</li>
-        <li><b>Let macOS open it.</b> TaskMatch isn't from the App Store yet, so macOS may say it's damaged or can't be opened. Run this once in Terminal, then open it again:
+        <li><b>Download</b> <a href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/work-match-mac-arm64.dmg">work-match for Mac</a>, open the <code>.dmg</code> and drag the app into Applications.</li>
+        <li><b>Let macOS open it.</b> work-match isn't from the App Store yet, so macOS may say it's damaged or can't be opened. Run this once in Terminal, then open it again:
           <pre><code>xattr -cr /Applications/work-match.app</code></pre>
         </li>
         <li><b>Click the globe</b> in your menu bar, then <b>Skip, try it as a guest</b>.</li>
@@ -196,14 +196,14 @@
           <li>Download the local AI model, <a href="https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-GGUF/resolve/main/Llama-3.2-3B-Instruct-Q4_K_M.gguf">Llama 3.2 3B</a> (2.0 GB), or the lighter <a href="https://huggingface.co/bartowski/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf">1B version</a> (0.8 GB), into:
             <pre><code>~/Library/Application Support/com.sultanalzoghaibi.workmatch/models/</code></pre>
           </li>
-          <li>Download the <a href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/TaskMatch-chrome-extension.zip">Chrome extension</a> and unzip it. In Chrome, open <code>chrome://extensions</code>, turn on <b>Developer mode</b>, click <b>Load unpacked</b> and pick the unzipped folder.</li>
-          <li>Restart TaskMatch and turn on <b>friend finding</b>.</li>
+          <li>Download the <a href="https://github.com/sweksha-cloud/taskmatch-site/releases/latest/download/work-match-chrome-extension.zip">Chrome extension</a> and unzip it. In Chrome, open <code>chrome://extensions</code>, turn on <b>Developer mode</b>, click <b>Load unpacked</b> and pick the unzipped folder.</li>
+          <li>Restart work-match and turn on <b>friend finding</b>.</li>
         </ol>
       </details>
     </section>
 
     <footer>
-      <span>TaskMatch · built at a hackathon</span>
+      <span>work-match · built at a hackathon</span>
       <a href="https://github.com/SultanAlzoghaibi/work-match">Source code on GitHub</a>
     </footer>
   </div>

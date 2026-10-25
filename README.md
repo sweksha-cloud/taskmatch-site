@@ -1,6 +1,6 @@
-# work-match website
+# TaskMatch website
 
-Landing page for work-match: your desktop notices what you're working on and finds someone doing it too.
+Landing page for TaskMatch: your desktop notices what you're working on and finds someone doing it too.
 
 - Static site (plain HTML), hosted on Vercel. No build step.
 - The Mac app and Chrome extension are on this repo's [Releases](../../releases/latest).
